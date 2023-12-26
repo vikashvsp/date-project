@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import image1 from '../../src/components/200w.gif';
+import image2 from '../../src/components/milk-and-mocha.gif'
 
 const MainScreen = () => {
+
+     const [flag, setFlag] = useState(true);
      const function1 = () => {
-          console.log("first");
+          setFlag(false)
      };
 
      const [noDisplacement, setNoDisplacement] = useState({ x: 0, y: 0 });
@@ -14,13 +17,13 @@ const MainScreen = () => {
           alignItems: 'center',
           justifyContent: 'center',
           height: '100vh',
-          backgroundColor: '#ffc0cb', // Romantic color (light pink)
      };
 
      const textStyle = {
           fontSize: '24px',
           fontFamily: 'cursive',
           marginBottom: '20px',
+          marginTop: '10px'
      };
 
      const buttonStyle = {
@@ -42,13 +45,11 @@ const MainScreen = () => {
           const displacementY = e.clientY - centerY;
 
           const distance = Math.sqrt(displacementX ** 2 + displacementY ** 2);
-          const minDistance = 50; // Set a minimum distance threshold
+          const minDistance = 50;
 
           if (distance < minDistance) {
-               // Calculate the angle between the mouse pointer and the center
                const angle = Math.atan2(displacementY, displacementX);
 
-               // Set the new position at the minimum distance along the same angle
                const newX = centerX + minDistance * Math.cos(angle);
                const newY = centerY + minDistance * Math.sin(angle);
 
@@ -59,29 +60,50 @@ const MainScreen = () => {
      };
 
      return (
-          <div style={containerStyle} onMouseMove={handleMouseMove}>
-               <div style={textStyle}>
-                    Will you please go on a date with me??
-               </div>
-               <div>
-                    <img src={image1} alt='image' />
-               </div>
-               <div>
-                    <button
-                         style={buttonStyle}
-                         onClick={function1}
-                    >
-                         YES
-                    </button>
+          <>
+               {flag ? (
+                    <>
 
-                    <button
-                         style={{ ...buttonStyle, transform: `translate(${noDisplacement.x}px, ${noDisplacement.y}px)` }}
-                         onClick={function1}
-                    >
-                         NO
-                    </button>
-               </div>
-          </div>
+                         <div style={containerStyle} onMouseMove={handleMouseMove}>
+                              <div style={textStyle}>
+                                   Will you please go on a date with me??
+                              </div>
+                              <div>
+                                   <img src={image1} alt='cute' />
+                              </div>
+                              <div>
+                                   <button
+                                        style={buttonStyle}
+                                        onClick={function1}
+                                   >
+                                        YES
+                                   </button>
+
+                                   <button
+                                        style={{ ...buttonStyle, transform: `translate(${noDisplacement.x}px, ${noDisplacement.y}px)` }}
+                                        onClick={function1}
+                                   >
+                                        NO
+                                   </button>
+                              </div>
+                         </div>
+                    </>) : (
+                    <>
+                         <div style={containerStyle}>
+                              <div style={textStyle}>
+                                   Wowzzaaa Let's gooo....
+                              </div>
+                              <img src={image2} alt='cute' />
+
+                              <div style={textStyle}>
+                                   Let's fix a Date and place.
+                              </div>
+                         </div>
+
+                    </>
+               )
+               }
+          </>
      );
 };
 
