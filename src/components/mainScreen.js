@@ -71,6 +71,9 @@ const MainScreen = () => {
                               <div>
                                    <img src={image1} alt='cute' />
                               </div>
+          <div style={textStyle}>
+                                   Made with ❤️ by Vikash Kumar
+                              </div>
                               <div>
                                    <button
                                         style={buttonStyle}
@@ -97,6 +100,9 @@ const MainScreen = () => {
 
                               <div style={textStyle}>
                                    Let's fix a Date and place.
+                              </div>
+                                             <div style={textStyle}>
+                                   Made with ❤️ by Vikash Kumar
                               </div>
                          </div>
 
